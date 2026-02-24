@@ -382,7 +382,7 @@
 
                             <!-- Riwayat Status -->
                             @php
-                                $statusHistories = \App\Models\aspirasiStatusHistory::where('id_pelaporan', $aspirasi->id_pelaporan)
+                                $statusHistories = \App\Models\AspirasiStatusHistory::where('id_pelaporan', $aspirasi->id_pelaporan)
                                                     ->orderBy('created_at', 'desc')
                                                     ->get();
                             @endphp

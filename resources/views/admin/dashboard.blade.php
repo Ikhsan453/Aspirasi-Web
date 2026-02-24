@@ -112,7 +112,7 @@
 
 @php
     // Get statistics with latest status from aspirasi relationship
-    $allAspirasi = \App\Models\Inputaspirasi::with('aspirasi')->get();
+    $allAspirasi = \App\Models\InputAspirasi::with('aspirasi')->get();
     $totalAspirasi = $allAspirasi->count();
     
     $aspirasiMenunggu = 0;
@@ -258,7 +258,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse(\App\Models\Inputaspirasi::with(['siswa', 'kategori', 'aspirasi'])->orderBy('created_at', 'desc')->take(5)->get() as $index => $aspirasi)
+                            @forelse(\App\Models\InputAspirasi::with(['siswa', 'kategori', 'aspirasi'])->orderBy('created_at', 'desc')->take(5)->get() as $index => $aspirasi)
                                 <tr class="slide-in" style="animation-delay: {{ $index * 0.1 }}s;">
                                     <td>
                                         <span class="badge bg-secondary">#{{ $aspirasi->id_pelaporan }}</span>
@@ -337,7 +337,7 @@
                     $kategoris = \App\Models\Kategori::withCount('inputaspirasis')
                         ->orderBy('inputaspirasis_count', 'desc')
                         ->get();
-                    $totalAspirasiAll = \App\Models\Inputaspirasi::count();
+                    $totalAspirasiAll = \App\Models\InputAspirasi::count();
                 @endphp
                 @forelse($kategoris as $index => $kategori)
                     <div class="mb-4">
@@ -359,7 +359,7 @@
                         
                         <!-- Status breakdown for this category -->
                         @php
-                            $aspirasiKategori = \App\Models\Inputaspirasi::with('aspirasi')->where('id_kategori', $kategori->id_kategori)->get();
+                            $aspirasiKategori = \App\Models\InputAspirasi::with('aspirasi')->where('id_kategori', $kategori->id_kategori)->get();
                             $menunggu = 0;
                             $proses = 0;
                             $selesai = 0;

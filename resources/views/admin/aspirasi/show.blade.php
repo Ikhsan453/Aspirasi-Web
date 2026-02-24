@@ -83,7 +83,7 @@
         <div class="col-md-8">
             <h1 class="display-6 fw-bold mb-2">
                 <i class="fas fa-eye me-3"></i>
-                Detail Aspirasi #{{ $inputaspirasi->id_pelaporan }}
+                Detail Aspirasi #{{ $inputAspirasi->id_pelaporan }}
             </h1>
             <p class="lead mb-0 opacity-75">
                 Informasi lengkap dan kelola status Aspirasi
@@ -115,17 +115,17 @@
                             <table class="table">
                                 <tr>
                                     <td><i class="fas fa-hashtag me-2"></i>ID Pelaporan:</td>
-                                    <td class="text-white"><strong>#{{ $inputaspirasi->id_pelaporan }}</strong></td>
+                                    <td class="text-white"><strong>#{{ $inputAspirasi->id_pelaporan }}</strong></td>
                                 </tr>
                                 <tr>
                                     <td><i class="fas fa-calendar me-2"></i>Tanggal Aspirasi:</td>
-                                    <td class="text-white">{{ $inputaspirasi->created_at->format('d/m/Y H:i:s') }}</td>
+                                    <td class="text-white">{{ $inputAspirasi->created_at->format('d/m/Y H:i:s') }}</td>
                                 </tr>
                                 <tr>
                                     <td><i class="fas fa-info-circle me-2"></i>Status:</td>
                                     <td>
                                         @php
-                                            $currentStatus = $inputaspirasi->aspirasi;
+                                            $currentStatus = $inputAspirasi->aspirasi;
                                             $currentStatusText = $currentStatus ? $currentStatus->status : 'Menunggu';
                                             $statusClass = match($currentStatusText) {
                                                 'Menunggu' => 'bg-warning text-dark',
@@ -145,15 +145,15 @@
                             <table class="table">
                                 <tr>
                                     <td><i class="fas fa-user me-2"></i>NIS Pelapor:</td>
-                                    <td class="text-white"><strong>{{ $inputaspirasi->nis }}</strong></td>
+                                    <td class="text-white"><strong>{{ $inputAspirasi->nis }}</strong></td>
                                 </tr>
                                 <tr>
                                     <td><i class="fas fa-graduation-cap me-2"></i>Kelas:</td>
-                                    <td class="text-white">{{ $inputaspirasi->siswa->kelas ?? '-' }}</td>
+                                    <td class="text-white">{{ $inputAspirasi->siswa->kelas ?? '-' }}</td>
                                 </tr>
                                 <tr>
                                     <td><i class="fas fa-book me-2"></i>Jurusan:</td>
-                                    <td class="text-white">{{ $inputaspirasi->siswa->jurusan ?? '-' }}</td>
+                                    <td class="text-white">{{ $inputAspirasi->siswa->jurusan ?? '-' }}</td>
                                 </tr>
                             </table>
                         </div>
@@ -168,13 +168,13 @@
                                     <td style="width: 20%;"><i class="fas fa-tag me-2"></i>Kategori:</td>
                                     <td>
                                         <span class="badge bg-warning text-dark px-3 py-2 fs-6" style="display: inline-block; white-space: normal; text-align: left; line-height: 1.4;">
-                                            {{ $inputaspirasi->kategori->ket_kategori }}
+                                            {{ $inputAspirasi->kategori->ket_kategori }}
                                         </span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td><i class="fas fa-map-marker-alt me-2"></i>Lokasi:</td>
-                                    <td class="text-white">{{ $inputaspirasi->lokasi }}</td>
+                                    <td class="text-white">{{ $inputAspirasi->lokasi }}</td>
                                 </tr>
                             </table>
                         </div>
@@ -193,13 +193,13 @@
             </div>
             <div class="card-body">
                 <div class="info-table">
-                    <p class="text-light mb-0" style="line-height: 1.6;">{{ $inputaspirasi->ket }}</p>
+                    <p class="text-light mb-0" style="line-height: 1.6;">{{ $inputAspirasi->ket }}</p>
                 </div>
             </div>
         </div>
 
         <!-- Photo -->
-        @if($inputaspirasi->foto)
+        @if($inputAspirasi->foto)
         <div class="card detail-card mb-4 slide-in">
             <div class="card-header">
                 <h5 class="mb-0 text-white fw-semibold">
@@ -209,7 +209,7 @@
             </div>
             <div class="card-body">
                 <div class="photo-container">
-                    <img src="{{ asset('storage/aspirasi/' . $inputaspirasi->foto) }}" 
+                    <img src="{{ asset('storage/aspirasi/' . $inputAspirasi->foto) }}" 
                          class="img-fluid" 
                          style="max-height: 400px;" 
                          alt="Foto Aspirasi">
@@ -230,7 +230,7 @@
                 </h5>
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.aspirasi.update-status', $inputaspirasi) }}" method="POST">
+                <form action="{{ route('admin.aspirasi.update-status', $inputAspirasi) }}" method="POST">
                     @csrf
                     @method('PUT')
                     
@@ -298,7 +298,7 @@
 
         <!-- Status History -->
         @php
-            $statusHistories = \App\Models\aspirasiStatusHistory::where('id_pelaporan', $inputaspirasi->id_pelaporan)
+            $statusHistories = \App\Models\AspirasiStatusHistory::where('id_pelaporan', $inputAspirasi->id_pelaporan)
                                 ->orderBy('created_at', 'desc')
                                 ->get();
         @endphp

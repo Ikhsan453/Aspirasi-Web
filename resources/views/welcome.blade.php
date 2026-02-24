@@ -204,7 +204,7 @@
 
     <!-- Statistics Section -->
     @php
-        $totalAspirasi = \App\Models\Inputaspirasi::count();
+        $totalAspirasi = \App\Models\InputAspirasi::count();
         $totalKategori = \App\Models\Kategori::count();
         $totalSiswa = \App\Models\Siswa::count();
     @endphp
