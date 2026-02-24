@@ -57,8 +57,12 @@ Aplikasi ini menggunakan 5 tabel utama:
 4. **Database Configuration**
    Edit file `.env` dan sesuaikan konfigurasi database:
    ```
-   DB_CONNECTION=sqlite
-   DB_DATABASE=database/database.sqlite
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=Aspirasi
+    DB_USERNAME=root
+    DB_PASSWORD=
    ```
 
 5. **Run Migrations & Seeders**
