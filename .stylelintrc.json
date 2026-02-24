@@ -1,0 +1,26 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "at-rule-no-unknown": null,
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["global"]
+      }
+    ],
+    "property-no-unknown": [
+      true,
+      {
+        "ignoreProperties": [
+          "composes"
+        ]
+      }
+    ],
+    "value-keyword-case": null,
+    "declaration-block-trailing-semicolon": null,
+    "no-descending-specificity": null,
+    "function-calc-no-unspaced-operator": null,
+    "alpha-value-notation": "number",
+    "color-function-notation": "legacy"
+  }
+}

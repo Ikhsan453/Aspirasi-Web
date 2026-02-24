@@ -1,0 +1,27 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 4
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.md]
+trim_trailing_whitespace = false
+
+[*.{yml,yaml}]
+indent_size = 2
+
+[*.{css,scss,less}]
+indent_size = 2
+
+[*.{js,jsx,ts,tsx,vue}]
+indent_size = 2
+
+[*.blade.php]
+indent_size = 4
+
+[compose.yaml]
+indent_size = 4
