@@ -7,8 +7,8 @@
     <img width="882" height="1035" alt="ERD_AspirasiWeb" src="https://github.com/user-attachments/assets/3e8f079b-5808-4c34-9051-    93976d8d9dd6" />
 
 # bootstrap
-    composer create-project laravel/laravel lara-Bootstrap
-    cd lara-Bootstrap
+    composer create-project laravel/laravel Aspirasi_Web
+    cd Aspirasi_Web
     composer require laravel/ui
     php artisan ui bootstrap --auth
     npm install
