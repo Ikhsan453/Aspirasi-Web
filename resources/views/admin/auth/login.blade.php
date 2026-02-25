@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Custom CSS -->
-    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custom.css') }}?v={{ time() }}" rel="stylesheet">
     
     <style>
         .login-container {
@@ -40,6 +40,7 @@
             overflow: hidden;
             max-width: 450px;
             width: 100%;
+            margin: 0 auto; /* Memastikan card berada di tengah */
         }
         
         .login-header {
@@ -100,32 +101,50 @@
         }
         
         .login-btn {
-            background: var(--gradient-accent);
-            border: none;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
+            border: 3px solid #ffffff !important;
             border-radius: 12px;
             padding: 1rem;
-            font-weight: 600;
+            font-weight: 800 !important;
             transition: all 0.3s ease;
+            color: #ffffff !important;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.5) !important;
         }
         
-        .login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        .login-btn:hover,
+        .login-btn:focus,
+        .login-btn:active {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.6) !important;
+            color: #ffffff !important;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+            border-color: #ffffff !important;
         }
         
         .back-btn {
-            background: rgba(51, 65, 85, 0.8);
-            border: 1px solid rgba(100, 116, 139, 0.3);
-            color: var(--text-light);
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%) !important;
+            border: 2px solid #ffffff !important;
+            color: #ffffff !important;
             border-radius: 12px;
-            padding: 0.75rem 1.5rem;
+            padding: 1rem 1.5rem !important;
             transition: all 0.3s ease;
+            text-decoration: none !important;
+            font-weight: 700 !important;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+            font-size: 1rem !important;
+            display: block !important;
+            width: 100% !important;
         }
         
-        .back-btn:hover {
-            background: rgba(51, 65, 85, 1);
-            color: var(--text-light);
-            transform: translateY(-2px);
+        .back-btn:hover,
+        .back-btn:focus,
+        .back-btn:active {
+            background: linear-gradient(135deg, #4b5563 0%, #374151 100%) !important;
+            color: #ffffff !important;
+            transform: translateY(-2px) !important;
+            text-decoration: none !important;
+            border-color: #ffffff !important;
         }
         
         @keyframes float {
@@ -141,13 +160,45 @@
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        
+        /* Additional button text fixes */
+        .btn.login-btn,
+        .btn.login-btn:hover,
+        .btn.login-btn:focus,
+        .btn.login-btn:active,
+        .btn.login-btn:visited {
+            color: #ffffff !important;
+        }
+        
+        .btn.back-btn,
+        .btn.back-btn:hover,
+        .btn.back-btn:focus,
+        .btn.back-btn:active,
+        .btn.back-btn:visited {
+            color: #ffffff !important;
+        }
+        
+        /* Ensure icon color */
+        .login-btn i,
+        .back-btn i {
+            color: #ffffff !important;
+        }
+
+        /* Container adjustments untuk centering */
+        .container-custom {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
     </style>
 </head>
 <body>
     <div class="login-container">
         <div class="container">
+            <!-- Baris ini yang diperbaiki - hanya menggunakan satu kolom dengan offset otomatis -->
             <div class="row justify-content-center">
-                <div class="col-md-6 col-lg-5">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                     <div class="login-card fade-in">
                         <!-- Header -->
                         <div class="login-header">
@@ -186,7 +237,7 @@
                             <form action="{{ url('admin/login') }}" method="POST" id="loginForm">
                                 @csrf
                                 
-                                <div class="mb-3">
+                                <div class="mb-4">
                                     <input type="text" 
                                            class="form-control @error('username') is-invalid @enderror" 
                                            id="username" 
@@ -200,7 +251,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="mb-4">
+                                <div class="mb-5">
                                     <input type="password" 
                                            class="form-control @error('password') is-invalid @enderror" 
                                            id="password" 
@@ -213,7 +264,7 @@
                                 </div>
 
                                 <div class="d-grid mb-4">
-                                    <button type="submit" class="btn btn-primary login-btn">
+                                    <button type="submit" class="btn btn-primary login-btn" style="color: #ffffff !important;">
                                         <i class="fas fa-sign-in-alt me-2"></i>
                                         Masuk ke Admin Panel
                                     </button>
@@ -222,7 +273,7 @@
 
                             <!-- Back Link -->
                             <div class="text-center">
-                                <a href="{{ route('home') }}" class="btn back-btn">
+                                <a href="{{ route('home') }}" class="btn back-btn d-block w-100" style="color: #ffffff !important;">
                                     <i class="fas fa-arrow-left me-2"></i>
                                     Kembali ke Beranda
                                 </a>
@@ -232,7 +283,7 @@
                     
                     <!-- Footer Info -->
                     <div class="text-center mt-4">
-                        <p class="text-muted-custom mb-0">
+                        <p class="text-white-50 mb-0">
                             <i class="fas fa-shield-alt me-1"></i>
                             Area khusus administrator sistem
                         </p>
@@ -263,6 +314,7 @@
             // Enter key handler
             document.addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
+                    e.preventDefault();
                     form.submit();
                 }
             });

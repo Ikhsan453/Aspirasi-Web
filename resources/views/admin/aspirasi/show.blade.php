@@ -90,7 +90,7 @@
             </p>
         </div>
         <div class="col-md-4 text-md-end">
-            <a href="{{ route('admin.aspirasi.index') }}" class="btn btn-light">
+            <a href="{{ route('admin.aspirasi.index') }}" class="btn btn-secondary">
                 <i class="fas fa-arrow-left me-2"></i>Kembali ke Daftar
             </a>
         </div>
