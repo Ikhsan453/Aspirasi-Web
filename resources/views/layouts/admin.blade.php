@@ -144,7 +144,6 @@
                 @yield('content')
             </main>
 
-    <script src="{{ asset('js/error-handler.js') }}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             window.toggleSidebar = function() {

@@ -130,7 +130,7 @@
     </footer>
 
     <script src="{{ asset('js/error-handler.js') }}"></script>
-    <script>
+    <script>   <script>
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
                 const alerts = document.querySelectorAll('.alert');
