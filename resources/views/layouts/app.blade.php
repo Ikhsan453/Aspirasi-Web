@@ -5,29 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
-    <!-- Permissions Policy to fix violations -->
     <meta http-equiv="Permissions-Policy" content="unload=(), geolocation=(), microphone=(), camera=()">
     
     <title>@yield('title', 'Sistem Aspirasi Web')</title>
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Font Awesome -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Custom CSS -->
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     
     @stack('styles')
 </head>
 <body class="fade-in">
-    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="{{ route('home') }}">
@@ -66,9 +57,7 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
     <main class="py-4">
-        <!-- Flash Messages -->
         @if(session('success'))
             <div class="container mb-4">
                 <div class="alert alert-success alert-dismissible fade show slide-in" role="alert">
@@ -140,16 +129,9 @@
         </div>
     </footer>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Error Handler -->
     <script src="{{ asset('js/error-handler.js') }}"></script>
-    
-    <!-- Custom JS - Clean version without problematic event handlers -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Auto dismiss alerts after 5 seconds
             setTimeout(function() {
                 const alerts = document.querySelectorAll('.alert');
                 alerts.forEach(function(alert) {
@@ -160,7 +142,6 @@
                 });
             }, 5000);
 
-            // Add loading state to buttons (exclude pagination forms)
             document.querySelectorAll('form:not(#perPageForm)').forEach(function(form) {
                 form.addEventListener('submit', function(e) {
                     const submitBtn = form.querySelector('button[type="submit"]');
@@ -168,8 +149,6 @@
                         const originalText = submitBtn.innerHTML;
                         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Memproses...';
                         submitBtn.disabled = true;
-                        
-                        // Re-enable after 10 seconds as fallback
                         setTimeout(function() {
                             submitBtn.innerHTML = originalText;
                             submitBtn.disabled = false;
@@ -178,7 +157,6 @@
                 });
             });
 
-            // Smooth scroll for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     const href = this.getAttribute('href');
@@ -195,11 +173,9 @@
                 });
             });
 
-            // Ensure modals work properly
             const modals = document.querySelectorAll('.modal');
             modals.forEach(function(modal) {
                 modal.addEventListener('hidden.bs.modal', function () {
-                    // Remove backdrop if stuck
                     const backdrops = document.querySelectorAll('.modal-backdrop');
                     backdrops.forEach(backdrop => backdrop.remove());
                     document.body.classList.remove('modal-open');

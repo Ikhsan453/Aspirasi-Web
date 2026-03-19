@@ -4,7 +4,6 @@ https://drive.google.com/drive/folders/1TEHD1LIbjr2dRCbYyx1JS9Pkcp1R34os?usp=sha
 # ERD ASPIRASI WEB
 https://drive.google.com/file/d/1p5g4231F7wRAyepaq_UAmk7MNJkS6sN4/view?usp=sharing
 
-<img width="882" height="1035" alt="ERD_AspirasiWeb" src="https://github.com/user-attachments/assets/3e8f079b-5808-4c34-9051-93976d8d9dd6" />
 ﻿# Sistem aspirasi Sarana Sekolah
 
 Aplikasi web untuk mengelola aspirasi kerusakan sarana dan prasarana sekolah yang dibuat dengan Laravel.

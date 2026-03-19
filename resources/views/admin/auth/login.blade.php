@@ -7,18 +7,11 @@
     
     <title>Login Admin - Aspirasi Web</title>
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Font Awesome -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Custom CSS -->
     <link href="{{ asset('css/custom.css') }}?v={{ time() }}" rel="stylesheet">
     
     <style>
@@ -40,7 +33,7 @@
             overflow: hidden;
             max-width: 450px;
             width: 100%;
-            margin: 0 auto; /* Memastikan card berada di tengah */
+            margin: 0 auto;
         }
         
         .login-header {
@@ -178,29 +171,18 @@
             color: #ffffff !important;
         }
         
-        /* Ensure icon color */
         .login-btn i,
         .back-btn i {
             color: #ffffff !important;
-        }
-
-        /* Container adjustments untuk centering */
-        .container-custom {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
         }
     </style>
 </head>
 <body>
     <div class="login-container">
         <div class="container">
-            <!-- Baris ini yang diperbaiki - hanya menggunakan satu kolom dengan offset otomatis -->
             <div class="row justify-content-center">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                     <div class="login-card fade-in">
-                        <!-- Header -->
                         <div class="login-header">
                             <div class="login-icon">
                                 <i class="fas fa-shield-alt"></i>
@@ -211,9 +193,7 @@
                             </p>
                         </div>
                         
-                        <!-- Body -->
                         <div class="login-body">
-                            <!-- Error Messages -->
                             @if($errors->has('login'))
                                 <div class="alert alert-danger slide-in mb-4">
                                     <i class="fas fa-exclamation-triangle me-2"></i>
@@ -233,7 +213,6 @@
                                 </div>
                             @endif
 
-                            <!-- Login Form -->
                             <form action="{{ url('admin/login') }}" method="POST" id="loginForm">
                                 @csrf
                                 
@@ -271,7 +250,6 @@
                                 </div>
                             </form>
 
-                            <!-- Back Link -->
                             <div class="text-center">
                                 <a href="{{ route('home') }}" class="btn back-btn d-block w-100" style="color: #ffffff !important;">
                                     <i class="fas fa-arrow-left me-2"></i>
@@ -281,7 +259,6 @@
                         </div>
                     </div>
                     
-                    <!-- Footer Info -->
                     <div class="text-center mt-4">
                         <p class="text-white-50 mb-0">
                             <i class="fas fa-shield-alt me-1"></i>
@@ -293,25 +270,18 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Custom JS -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('loginForm');
             const submitBtn = form.querySelector('button[type="submit"]');
             
-            // Form submission handler
             form.addEventListener('submit', function() {
                 submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Memproses...';
                 submitBtn.disabled = true;
             });
             
-            // Auto focus on username field
             document.getElementById('username').focus();
             
-            // Enter key handler
             document.addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
                     e.preventDefault();

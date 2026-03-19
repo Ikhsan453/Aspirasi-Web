@@ -395,7 +395,7 @@
                                         @foreach($statusHistories as $history)
                                             <div class="mb-3 pb-3 @if(!$loop->last) border-bottom @endif" style="border-color: rgba(100, 116, 139, 0.3) !important;">
                                                 <div class="d-flex justify-content-between align-items-start">
-                                                    <div class="flex-grow-1">
+                                                    <div class="grow">
                                                         <span class="badge 
                                                             @switch($history->status)
                                                                 @case('Menunggu') bg-warning text-dark @break

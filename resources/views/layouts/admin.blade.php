@@ -5,29 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
-    <!-- Permissions Policy to fix violations -->
     <meta http-equiv="Permissions-Policy" content="unload=(), geolocation=(), microphone=(), camera=()">
     
-    <title>@yield('title', 'Admin - aspirasi Web')</title>
+    <title>@yield('title', 'Admin - Aspirasi Web')</title>
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Font Awesome -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Custom CSS -->
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     
     @stack('styles')
 </head>
 <body class="fade-in admin-layout">
-    <!-- Top Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="{{ route('admin.dashboard') }}">
@@ -69,10 +60,8 @@
     </nav>
 
     @auth('admin')
-    <!-- Sidebar Overlay for Mobile -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
     
-    <!-- Sidebar -->
     <nav class="sidebar" id="sidebar">
         <div class="position-sticky">
             <div class="mb-4 text-center">
@@ -106,7 +95,7 @@
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('admin.aspirasi.*') ? 'active' : '' }}" 
                        href="{{ route('admin.aspirasi.index') }}">
-                        <i class="fas fa-comments me-2"></i> aspirasi
+                        <i class="fas fa-comments me-2"></i> Aspirasi
                     </a>
                 </li>
                 
@@ -122,9 +111,7 @@
     </nav>
     @endauth
 
-    <!-- Main Content -->
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
-                <!-- Flash Messages -->
                 @if(session('success'))
                     <div class="alert alert-success alert-dismissible fade show slide-in mb-4" role="alert">
                         <i class="fas fa-check-circle me-2"></i>
@@ -157,21 +144,13 @@
                 @yield('content')
             </main>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Error Handler -->
     <script src="{{ asset('js/error-handler.js') }}"></script>
-    
-    <!-- Custom JS - Clean version without problematic event handlers -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Sidebar toggle functions
             window.toggleSidebar = function() {
                 if (window.innerWidth < 768) {
                     const sidebar = document.getElementById('sidebar');
                     const overlay = document.getElementById('sidebarOverlay');
-                    
                     if (sidebar && overlay) {
                         sidebar.classList.toggle('show');
                         overlay.classList.toggle('show');
@@ -182,20 +161,17 @@
             window.closeSidebar = function() {
                 const sidebar = document.getElementById('sidebar');
                 const overlay = document.getElementById('sidebarOverlay');
-                
                 if (sidebar && overlay) {
                     sidebar.classList.remove('show');
                     overlay.classList.remove('show');
                 }
             };
             
-            // Close sidebar when clicking on overlay
             const overlay = document.getElementById('sidebarOverlay');
             if (overlay) {
                 overlay.addEventListener('click', window.closeSidebar);
             }
             
-            // Close sidebar when clicking on nav links in mobile
             document.querySelectorAll('.sidebar .nav-link').forEach(function(link) {
                 link.addEventListener('click', function() {
                     if (window.innerWidth < 768) {
@@ -204,14 +180,12 @@
                 });
             });
             
-            // Handle window resize
             window.addEventListener('resize', function() {
                 if (window.innerWidth >= 768) {
                     window.closeSidebar();
                 }
             });
 
-            // Auto dismiss alerts after 5 seconds
             setTimeout(function() {
                 const alerts = document.querySelectorAll('.alert');
                 alerts.forEach(function(alert) {
@@ -222,7 +196,6 @@
                 });
             }, 5000);
 
-            // Add loading state to buttons
             document.querySelectorAll('form').forEach(function(form) {
                 form.addEventListener('submit', function() {
                     const submitBtn = form.querySelector('button[type="submit"]');
@@ -230,8 +203,6 @@
                         const originalText = submitBtn.innerHTML;
                         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Memproses...';
                         submitBtn.disabled = true;
-                        
-                        // Re-enable after 10 seconds as fallback
                         setTimeout(function() {
                             submitBtn.innerHTML = originalText;
                             submitBtn.disabled = false;
@@ -240,7 +211,6 @@
                 });
             });
 
-            // Confirm delete actions
             document.querySelectorAll('.btn-danger').forEach(function(btn) {
                 if (btn.textContent.includes('Hapus')) {
                     btn.addEventListener('click', function(e) {
