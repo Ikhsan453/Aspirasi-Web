@@ -1,8 +1,18 @@
 # SOAL P3
-https://drive.google.com/drive/folders/1TEHD1LIbjr2dRCbYyx1JS9Pkcp1R34os?usp=sharing
+    https://drive.google.com/drive/folders/1TEHD1LIbjr2dRCbYyx1JS9Pkcp1R34os?usp=sharing
 
 # ERD ASPIRASI WEB
-https://drive.google.com/file/d/1p5g4231F7wRAyepaq_UAmk7MNJkS6sN4/view?usp=sharing
+    https://drive.google.com/file/d/1p5g4231F7wRAyepaq_UAmk7MNJkS6sN4/view?usp=sharing
+
+    <img width="882" height="1035" alt="ERD_AspirasiWeb" src="https://github.com/user-attachments/assets/3e8f079b-5808-4c34-9051-    93976d8d9dd6" />
+
+# bootstrap
+    composer create-project laravel/laravel Aspirasi_Web
+    cd Aspirasi_Web
+    composer require laravel/ui
+    php artisan ui bootstrap --auth
+    npm install
+    npm run dev
 
 ﻿# Sistem aspirasi Sarana Sekolah
 
