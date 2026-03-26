@@ -6,6 +6,10 @@
 
 
 # bootstrap
+    https://git-scm.com/install/windows
+    https://www.apachefriends.org/download.html
+    https://getcomposer.org/download/
+    https://nodejs.org/en/download/current
     composer create-project laravel/laravel Aspirasi_Web
     cd Aspirasi_Web
     composer require laravel/ui
